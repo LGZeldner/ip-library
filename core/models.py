@@ -42,7 +42,8 @@ class ref_userAccess(models.Model):
 
 # Доступ по группам    
 class ref_groupAccess(models.Model):
-    name = models.CharField(max_length=100)
+    group_id = models.IntegerField()
+    access_id = models.IntegerField()  
 
 # Доступ по группам    
 class ref_userGroup(models.Model):
