@@ -2,13 +2,13 @@ from django.db import models
 
 # Книга
 class Books(models.Model):
-    type_id = models.IntegerField()
+    type = models.ForeignKey('Book_types', on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=100)
     book = models.BinaryField()
     def __str__(self):
-        return f"{self.type_id, self.name, self.book}"
+        return f"{self.type, self.name, self.book}"
     class Meta:
-        ordering = ("name")
+        ordering = ["name"]
 
 # Тип книги    
 class Book_types(models.Model):
@@ -53,36 +53,36 @@ class bgroups(models.Model):
 
 # Доступ по пользователям    
 class ref_userAccess(models.Model):
-    user_id = models.IntegerField()
-    access_id = models.IntegerField()
+    user = models.ForeignKey('Busers', on_delete=models.SET_NULL, null=True)
+    access = models.ForeignKey('Baccess', on_delete=models.SET_NULL, null=True)
     def __str__(self):
-        return f"{self.user_id, self.access_id}"    
+        return f"{self.user, self.access}"    
 
 # Доступ по группам    
 class ref_groupAccess(models.Model):
-    group_id = models.IntegerField()
-    access_id = models.IntegerField()
+    group = models.ForeignKey('bgroups', on_delete=models.SET_NULL, null=True)
+    access = models.ForeignKey('Baccess', on_delete=models.SET_NULL, null=True)
     def __str__(self):
-        return f"{self.group_id, self.access_id}"    
+        return f"{self.group, self.access}"    
 
 # Доступ по группам    
 class ref_userGroup(models.Model):
-    user_id = models.IntegerField()
-    group_id = models.IntegerField()
+    user = models.ForeignKey('Busers', on_delete=models.SET_NULL, null=True)
+    group = models.ForeignKey('bgroups', on_delete=models.SET_NULL, null=True)
     def __str__(self):
-        return f"{self.user_id, self.group_id}"
+        return f"{self.user, self.group}"
 
 # Книги и их авторы    
 class ref_bookAuthor(models.Model):
-    book_id = models.IntegerField()
-    author_id = models.IntegerField()
+    book = models.ForeignKey('Books', on_delete=models.SET_NULL, null=True)
+    author = models.ForeignKey('Book_authors', on_delete=models.SET_NULL, null=True)
     def __str__(self):
-        return f"{self.book_id, self.author_id}"
+        return f"{self.book, self.author}"
 
 # Книги и их темы    
 class ref_bookTags(models.Model):
-    book_id = models.IntegerField()
-    tag_id = models.IntegerField()
+    book = models.ForeignKey('Books', on_delete=models.SET_NULL, null=True)
+    tag = models.ForeignKey('Book_tags', on_delete=models.SET_NULL, null=True)
     def __str__(self):
-        return f"{self.book_id, self.tag_id}"    
+        return f"{self.book, self.tag}"    
 

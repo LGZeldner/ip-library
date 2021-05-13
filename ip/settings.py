@@ -31,13 +31,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core'
+    'core',
+    'django.contrib.admin',
 ]
 
 MIDDLEWARE = [
@@ -67,7 +68,9 @@ TEMPLATES = [
         },
     },
 ]
-
+TEMPLATE_DIRS = (
+    '/templates/admin/', 
+)
 WSGI_APPLICATION = 'ip.wsgi.application'
 
 
