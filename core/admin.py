@@ -1,7 +1,16 @@
 from django.contrib import admin
 from django.urls import reverse
 from django.utils.http import urlencode
+from django.http import HttpResponseRedirect
+from django.conf.urls import url
+
 from core.models import Books, Book_types, Book_authors, Book_tags, Baccess, Busers, bgroups, ref_userAccess, ref_userGroup, ref_groupAccess, ref_bookAuthor, ref_bookTags
+
+@admin.action(description="Revoke special status")
+def make_general(modeladmin, request, queryset):
+    queryset.update(access=1)
+
+admin.site.site_header = 'Library on Django'
 
 @admin.register(Books)
 class BooksAdmin(admin.ModelAdmin):
@@ -11,7 +20,7 @@ class BooksAdmin(admin.ModelAdmin):
     pass
 
 @admin.register(Book_types)
-class Book_typesAdmin(admin.ModelAdmin):
+class Book_typesAdmin(admin.ModelAdmin):    
     pass
 
 @admin.register(Book_authors)
@@ -42,7 +51,9 @@ class bgroupsAdmin(admin.ModelAdmin):
 class ref_userAccessAdmin(admin.ModelAdmin):
     list_display = ("user", "access")
     list_filter = ["access"]
-    pass
+    actions = [make_general]
+    
+    
 
 @admin.register(ref_userGroup)
 class ref_userGroupAdmin(admin.ModelAdmin):
