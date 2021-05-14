@@ -13,7 +13,6 @@ class Book_typesSerializer(serializers.HyperlinkedModelSerializer):
         model = Book_types
         fields = ('name')
 
-
 class Book_authorsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Book_authors
