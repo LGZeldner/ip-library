@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'core',
     'ipapi',    
     'rest_framework',
+    'import_export'
 ]
 
 MIDDLEWARE = [
