@@ -115,3 +115,5 @@ ip/settings.py
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
+ip-frontend/.gitignore
+ip-frontend/src/assets/.gitkeep

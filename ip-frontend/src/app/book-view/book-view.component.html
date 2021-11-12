@@ -1,0 +1,9 @@
+<div class="grid-x grid-margin-x">
+  <div class="cell shrink">{{inBook.id}}</div>
+  <div class="cell auto">{{inBook.name}}</div>
+  <div class="cell small-1">{{inBook.type}}</div>
+  <div class="cell small-2 small button-group no-gaps">
+    <a class="button" (click)="editFlag=!editFlag">Edit</a>
+    <a class="alert button" (click)="onDelBook()">Delete</a>
+  </div>
+</div>

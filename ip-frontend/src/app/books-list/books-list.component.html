@@ -1,0 +1,38 @@
+<div class="callout">
+  <div class="grid-container">
+    <h4>Сортировать по: </h4>
+    <div class="grid-x grid-margin-x">
+      <div class="cell shrink">
+        <span class="label secondary">Названию</span>
+      </div>
+      <div class="cell small-1">
+        <div class="button-group">
+          <button class="button small" (click)="sortNameUp()">^</button>
+          <button class="button small" (click)="sortNameDown()">v</button>
+        </div>
+      </div>
+      <div class="cell shrink">
+        <span class="label secondary">Типу</span>
+      </div>
+      <div class="cell small-1">
+        <div class="button-group">
+          <button class="button small" (click)="sortTypeUp()">^</button>
+          <button class="button small" (click)="sortTypeDown()">v</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="callout secondary">
+  <div class="grid-x grid-margin-x">
+    <div class="cell shrink">Id</div>
+    <div class="cell auto">Название</div>
+    <div class="cell small-1">Тип</div>
+  </div>
+</div>
+<div class="grid-container">
+  <app-book-view *ngFor="let book of booksService.books | sortBooks:sortType:sortOrder"
+                    [inBook]="book"
+                    (delBook)="booksService.onDelBook($event)" >
+  </app-book-view>
+</div>
