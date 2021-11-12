@@ -4,7 +4,7 @@ from django.db import models
 class Books(models.Model):
     type = models.ForeignKey('Book_types', on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=100)
-    book = models.BinaryField()
+    book = models.CharField(max_length=65535)
     def __str__(self):
         return f"{self.type, self.name, self.book}"
     class Meta:
@@ -24,7 +24,7 @@ class Book_authors(models.Model):
     def __str__(self):
         return f"{self.fname, self.mname, self.lname}"
   
-# Тема    
+# Теги    
 class Book_tags(models.Model):
     name = models.CharField(max_length=100)
     def __str__(self):
